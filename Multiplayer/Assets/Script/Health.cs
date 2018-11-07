@@ -38,9 +38,12 @@ public class Health : NetworkBehaviour {
     [ClientRpc]
     void RpcRespawn()
     {
-        if(isLocalPlayer)//solo la instancia original tiene autoridad de modificar su transform.
+        if (isLocalPlayer)//solo la instancia original tiene autoridad de modificar su transform.
         {
             transform.position = Vector3.zero;
+        }
+        else if (isServer) {
+            Destroy(this.gameObject);
         }
     }
 }
